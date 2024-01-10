@@ -7,7 +7,7 @@
 Welcome to the quantum-rs repository! This project is aimed at providing a quantum computing library written in Rust.
 ## Documentation
 
-[Documentation](temp)
+[Documentation](https://docs.rs/quantum-rs/0.0.0/quantum_rs/)s
 
 
 ## Installation
