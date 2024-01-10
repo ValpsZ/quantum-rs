@@ -44,7 +44,7 @@ using quantum-rs;
 
 Contributions are always welcome!
 
-Please adhere to this project's `code of conduct`
+Please be kind and don't use this as an opportunity to bother other people.
 
 
 ## License
