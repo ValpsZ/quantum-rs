@@ -1,6 +1,6 @@
 [package]
 name = "quantum-rs"
-version = "0.1.0"
+version = "0.0.0"
 description = "This project is aimed at providing a quantum computing library written in Rust."
 readme = "README.md"
 repository = "https://github.com/ValpsZ/quantum-rs"
