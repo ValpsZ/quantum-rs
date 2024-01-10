@@ -2,7 +2,10 @@
 name = "quantum-rs"
 version = "0.1.0"
 description = "This project is aimed at providing a quantum computing library written in Rust."
+readme = "README.md"
+repository = "https://github.com/ValpsZ/quantum-rs"
 authors = ["ValpsZ https://github.com/ValpsZ"]
+license = "MIT"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
