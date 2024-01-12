@@ -25,6 +25,15 @@ impl Qubit {
 
     pub fn observe(&self) -> () {
         let mut rng = rand::thread_rng();
+
+        let rand_f64: f64 = rng.gen();
+        let rand_const: f16 = f16::from_f64_const(rand_f64);
+
+        let mut total_probability: f16 = f16::from_f32(0.0);
+        for state in &self.wave_function {
+            total_probability += state;
+            if (*state < rand_const) {}
+        }
     }
 
     pub fn entangle_qubit(&mut self, other_qubit: &mut Qubit) {
@@ -33,6 +42,7 @@ impl Qubit {
         let new_states: usize = self.states * other_qubit.states;
 
         self.states = new_states;
+        other_qubit.states = new_states;
 
         let mut new_wave_function: Vec<f16> = Vec::new();
         for state_self in &self.wave_function {
