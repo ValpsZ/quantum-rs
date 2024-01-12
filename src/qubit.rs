@@ -1,0 +1,44 @@
+use half::f16;
+use rand::{thread_rng, Rng};
+
+#[derive(Clone)]
+pub struct Qubit {
+    id: u64,
+    states: usize,
+    observed: bool,
+    wave_function: Vec<f16>,
+    entangled_qubits: Vec<u64>,
+}
+
+impl Qubit {
+    pub fn new(id: u64, states: usize) -> Self {
+        Self {
+            id,
+            states,
+            observed: false,
+            wave_function: vec![f16::from_f64(1.0 / states as f64); states],
+            entangled_qubits: Vec::new(),
+        }
+    }
+
+    pub fn entangle_qubit(
+        &mut self,
+        other_id: u64,
+        other_states: usize,
+        other_wave_function: &Vec<f16>,
+    ) {
+        self.entangled_qubits.push(other_id);
+
+        let new_states: usize = self.states * other_states;
+
+        self.states = new_states;
+
+        let mut new_wave_function: Vec<f16> = Vec::new();
+        for state_self in &self.wave_function {
+            for state_other in other_wave_function {
+                new_wave_function.push(*state_self * *state_other);
+            }
+        }
+        self.wave_function = new_wave_function;
+    }
+}
