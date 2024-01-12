@@ -1,3 +1,5 @@
+use std::thread::Thread;
+
 use half::f16;
 use rand::{thread_rng, Rng};
 
@@ -21,24 +23,32 @@ impl Qubit {
         }
     }
 
-    pub fn entangle_qubit(
-        &mut self,
-        other_id: u64,
-        other_states: usize,
-        other_wave_function: &Vec<f16>,
-    ) {
-        self.entangled_qubits.push(other_id);
+    pub fn observe(&self) -> () {
+        let mut rng = rand::thread_rng();
+    }
 
-        let new_states: usize = self.states * other_states;
+    pub fn entangle_qubit(&mut self, other_qubit: &mut Qubit) {
+        self.entangled_qubits.push(other_qubit.id);
+
+        let new_states: usize = self.states * other_qubit.states;
 
         self.states = new_states;
 
         let mut new_wave_function: Vec<f16> = Vec::new();
         for state_self in &self.wave_function {
-            for state_other in other_wave_function {
+            for state_other in &other_qubit.wave_function {
                 new_wave_function.push(*state_self * *state_other);
             }
         }
+
+        let mut other_wave_function: Vec<f16> = Vec::new();
+        for state_other in &other_qubit.wave_function {
+            for state_self in &self.wave_function {
+                other_wave_function.push(*state_self * *state_other);
+            }
+        }
+
         self.wave_function = new_wave_function;
+        other_qubit.wave_function = other_wave_function;
     }
 }
